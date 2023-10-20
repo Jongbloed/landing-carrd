@@ -178,4 +178,9 @@ var formattedTime = userLocalTime.format("dddd D MMMM @ HH:mm A z");
         addToCalendarButtons[0].setAttribute("startTime", userLocalTime.format('HH:mm'));
         addToCalendarButtons[0].setAttribute("endTime", userLocalTime.add(1, 'hours').format('HH:mm'));
     }
+
+    var hiddenField = document.querySelectorAll('input[data-name=intro_call_date]');
+    if(hiddenField.length){
+        hiddenField[0].value = formattedTime;
+    }
 })();
