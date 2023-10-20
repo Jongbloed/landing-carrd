@@ -2,7 +2,7 @@
 const availableWeek = [
   { year: 2023, weekNumber: 43, introCall: false, weekDescription: '23 October - 29 October 2023' },
   { year: 2023, weekNumber: 44, introCall: false, weekDescription: '30 October - 05 November 2023' },
-  { year: 2023, weekNumber: 45, introCall: true, weekDescription: '06 - 12 November 2023' },
+  { year: 2023, weekNumber: 45, introCall: false, weekDescription: '06 - 12 November 2023' },
   { year: 2023, weekNumber: 46, introCall: true, weekDescription: '13 - 19 November 2023' },
   { year: 2023, weekNumber: 47, introCall: true, weekDescription: '20 - 26 November 2023' },
   { year: 2023, weekNumber: 48, introCall: true, weekDescription: '27 November - 03 December 2023' },
