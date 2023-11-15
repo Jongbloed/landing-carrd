@@ -1,7 +1,7 @@
 .personalization-richard {
-    display: block;
+    display: block !important;
 }
 
 .personalization-www {
-    display: none;
+    display: none !important;
 }
