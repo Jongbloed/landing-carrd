@@ -1,0 +1,29 @@
+<style>
+    .image.style8 img {
+        object-fit: contain !important;
+    }
+
+    .style12.container.columns {
+        min-height: unset !important;
+    }
+
+    @media (min-width: 480px) {
+        #container25>.wrapper>.inner> :nth-child(2) {
+            position: absolute;
+            display: block;
+            width: 100%;
+            text-align: center;
+            left: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #container25>.wrapper>.inner> :nth-child(2)>h2 {
+            max-width: 7em !important;
+            min-width: 7em;
+            display: block;
+            text-align: left;
+            font-size: 1.65em;
+        }
+    }
+</style>
