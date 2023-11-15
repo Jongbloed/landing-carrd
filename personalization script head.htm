@@ -1,0 +1,15 @@
+<link id="personalization" rel="stylesheet" type="text/css" />
+
+<script>
+    var domain = /:\/\/([^\/\.]+)/.exec(window.location.href)[1];
+    var sheet = document
+        .getElementById('personalization');
+    if (domain.toLowerCase() === 'richard') {
+        document.getElementsByTagName('title')[0].innerText = 'Inner Alchemists x Being Human Podcast';
+        sheet.href = 'https://gilded-cranachan-b53342.netlify.app/richard.css';
+    }
+    else {
+        document.getElementsByTagName('title')[0].innerText = 'Inner Alchemists';
+        sheet.href = 'https://gilded-cranachan-b53342.netlify.app/www.css';
+    }
+</script>
