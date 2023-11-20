@@ -2,6 +2,10 @@
     display: none !important;
 }
 
+.personalization-groupcall {
+    display: none !important;
+}
+
 .personalization-www {
     display: block !important;
 }
