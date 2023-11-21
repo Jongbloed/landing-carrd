@@ -433,7 +433,7 @@ h1.style19 span.p:nth-child(n + 2), h2.style19 span.p:nth-child(n + 2), h3.style
 	margin-top: 1rem;
 }
 
-#text10 {
+#discountcode {
 	border: 3px dashed #777;
 }
 
@@ -6108,6 +6108,11 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 	
 	.container.style17.columns > .wrapper > .inner > .full > .full:first-child:last-child.slideshow .bg {
 		min-height: auto;
+	}
+	
+	#container17 > .wrapper {
+		margin-top: 1rem  !important;
+		padding-bottom: 1rem ;
 	}
 	
 	.container.style9 {

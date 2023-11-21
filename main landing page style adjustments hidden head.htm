@@ -1,10 +1,19 @@
 <style>
-#ifyouwouldliketo > .wrapper > .inner {
-    --gutters: 0.5rem;
-    --padding-vertical: 4.375rem;
-    --spacing: 0.25rem;
-    padding: 0px var(--padding-horizontal) var(--padding-vertical) var(--padding-horizontal) !important; 
-}
+    #discountcode::before {
+        content: '✂';
+        position: absolute;
+        left: -.5em;
+        rotate: 270deg;
+        top: 2rem;
+        font-size: larger;
+    }
+
+    #ifyouwouldliketo > .wrapper > .inner {
+        --gutters: 0.5rem;
+        --padding-vertical: 4.375rem;
+        --spacing: 0.25rem;
+        padding: 0px var(--padding-horizontal) var(--padding-vertical) var(--padding-horizontal) !important; 
+    }
 
     .image.style8 img {
         object-fit: contain !important;
