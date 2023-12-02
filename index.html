@@ -15,21 +15,30 @@
 		<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
 		<link rel="stylesheet" href="assets/main.css" />
 		<noscript><link rel="stylesheet" href="assets/noscript.css" /></noscript>
-		<!-- qweoqwupeoiqwuewqe --><link rel="stylesheet" type="text/css" href="https://gilded-cranachan-b53342.netlify.app/main_landing_page_style_adjustments.css" />
-		<link id="personalization" rel="stylesheet"
-		type="text/css"/>
+		<!-- qweoqwupeoiqwuewqe --><link id="personalization" rel="stylesheet" type="text/css" />
 		
 		<script>
 		var domain = /:\/\/([^\/\.]+)/.exec(window.location.href)[1];
-		var sheet = document
-		.getElementById('personalization');
+		var sheet = document.getElementById('personalization');
+		var title = document.getElementsByTagName('title')[0];
+		
 		if (domain.toLowerCase() === 'richard') {
-		document.getElementsByTagName('title')[0].innerText = 'Inner Alchemists x Being Human Podcast';
+		title.innerText = 'Inner Alchemists x Being Human Podcast';
 		sheet.href = 'https://gilded-cranachan-b53342.netlify.app/richard.css';
+		// Hopefully set attribution cookie
+		window.addEventListener('load', function() {
+		var attributionIframe = document.getElementById("thrivecart_affiliate_iframe");
+		attributionIframe.src = "https://richardfirsthuman--inner-alchemists.thrivecart.com/inner-alchemists/";
+		});
 		}
 		else {
-		document.getElementsByTagName('title')[0].innerText = 'Inner Alchemists';
+		title.innerText = 'Inner Alchemists';
 		sheet.href = 'https://gilded-cranachan-b53342.netlify.app/www.css';
+		// Hopefully set attribution cookie
+		window.addEventListener('load', function() {
+		var attributionIframe = document.getElementById("thrivecart_affiliate_iframe");
+		attributionIframe.src = "https://erikjongbloed--inner-alchemists.thrivecart.com/inner-alchemists/"
+		});
 		}
 		</script><!-- mnbnbxmbzxmncbzxc -->
 	</head>
@@ -800,6 +809,9 @@
 						<div id="container06" class="container default">
 							<div class="wrapper">
 								<div class="inner">
+									<div id="embed01">
+										<!-- qweoqwupeoiqwuewqe --><iframe id="thrivecart_affiliate_iframe" style="visibility: hidden;"></iframe><!-- mnbnbxmbzxmncbzxc -->
+									</div>
 									<p id="text09" class="style5">Copyright 2023 | Erik Jongbloed | All rights reserved.</p>
 									<ul id="links01" class="links">
 										<li class="n01">
