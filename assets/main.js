@@ -1332,6 +1332,12 @@
 		this.$modal = null;
 		
 		/**
+		 * Modal caption.
+		 * @var {DOMElement}
+		 */
+		this.$modalCaption = null;
+		
+		/**
 		 * Modal image.
 		 * @var {DOMElement}
 		 */
@@ -1360,6 +1366,12 @@
 		 * @var {bool}
 		 */
 		this.locked = false;
+		
+		/**
+		 * Captions state.
+		 * @var {bool}
+		 */
+		this.captions = null;
 		
 		/**
 		 * Current index.
@@ -1411,8 +1423,10 @@
 			var _this = this,
 				$links = $$('#' + config.id + ' .thumbnail'),
 				navigation = config.navigation,
+				captions = config.captions,
 				mobile = config.mobile,
 				mobileNavigation = config.mobileNavigation,
+				scheme = config.scheme,
 				protect = ('protect' in config ? config.protect : false),
 				i, j;
 		
@@ -1451,8 +1465,10 @@
 									_this.show(index, {
 										$links: $links,
 										navigation: navigation,
+										captions: captions,
 										mobile: mobile,
 										mobileNavigation: mobileNavigation,
+										scheme: scheme,
 										protect: protect,
 									});
 		
@@ -1482,14 +1498,14 @@
 					$modal.id = this.id + '-modal';
 					$modal.tabIndex = -1;
 					$modal.className = 'gallery-modal';
-					$modal.innerHTML = '<div class="inner"><img src="" /></div><div class="nav previous"></div><div class="nav next"></div><div class="close"></div>';
+					$modal.innerHTML = '<div class="inner"><img src="" /></div><div class="caption"></div><div class="nav previous"></div><div class="nav next"></div><div class="close"></div>';
 					$body.appendChild($modal);
 		
 				// Inner.
-					$modalInner = $('#' + this.id + '-modal .inner');
+					$modalInner = $modal.querySelector('.inner');
 		
 				// Image.
-					$modalImage = $('#' + this.id + '-modal img');
+					$modalImage = $modal.querySelector('img');
 		
 					// Load event.
 						$modalImage.addEventListener('load', function() {
@@ -1534,9 +1550,12 @@
 		
 						}, true);
 		
+				// Caption.
+					$modalCaption = $modal.querySelector('.caption');
+		
 				// Navigation.
-					$modalNext = $('#' + this.id + '-modal .next');
-					$modalPrevious = $('#' + this.id + '-modal .previous');
+					$modalNext = $modal.querySelector('.next');
+					$modalPrevious = $modal.querySelector('.previous');
 		
 			// Methods.
 				$modal.show = function(index, offset, direction) {
@@ -1668,6 +1687,10 @@
 										_this.current = index;
 										$modalImage.src = item.href;
 		
+									// Set caption (if applicable).
+										if (_this.captions)
+											$modalCaption.innerHTML = item.querySelector('[data-caption]').dataset.caption;
+		
 									// Delay.
 										setTimeout(function() {
 		
@@ -1689,6 +1712,10 @@
 							// Set current, src.
 								_this.current = index;
 								$modalImage.src = item.href;
+		
+							// Set caption (if applicable).
+								if (_this.captions)
+									$modalCaption.innerHTML = item.querySelector('[data-caption]').dataset.caption;
 		
 							// Set visible.
 								$modal.classList.add('visible');
@@ -1836,7 +1863,15 @@
 				});
 		
 				$modal.addEventListener('click', function(event) {
-					$modal.hide();
+		
+					// Click target was an anchor or spoiler text tag? Bail.
+						if (event.target
+						&&	(event.target.tagName == 'A' || event.target.tagName == 'SPOILER-TEXT'))
+							return;
+		
+					// Hide modal.
+						$modal.hide();
+		
 				});
 		
 				$modal.addEventListener('keydown', function(event) {
@@ -1925,6 +1960,7 @@
 			// Set.
 				this.$modal = $modal;
 				this.$modalImage = $modalImage;
+				this.$modalCaption = $modalCaption;
 				this.$modalNext = $modalNext;
 				this.$modalPrevious = $modalPrevious;
 		
@@ -1939,9 +1975,41 @@
 			// Update config.
 				this.$links = config.$links;
 				this.navigation = config.navigation;
+				this.captions = config.captions;
 				this.mobile = config.mobile;
 				this.mobileNavigation = config.mobileNavigation;
+				this.scheme = config.scheme;
 				this.protect = config.protect;
+		
+			// Scheme.
+		
+				// Remove any existing classes.
+					this.$modal.classList.remove('light', 'dark');
+		
+				// Determine scheme.
+					switch (this.scheme) {
+		
+						case 'light':
+							this.$modal.classList.add('light');
+							break;
+		
+						case 'dark':
+							this.$modal.classList.add('dark');
+							break;
+		
+						case 'auto':
+		
+							// Prefers light scheme? Apply light class.
+								if (window.matchMedia('(prefers-color-scheme: light)').matches)
+									this.$modal.classList.add('light');
+		
+							// Otherwise, default to dark.
+								else
+									this.$modal.classList.add('dark');
+		
+							break;
+		
+					}
 		
 			// Navigation.
 				if (this.navigation) {
@@ -1965,6 +2033,12 @@
 					this.$modalPrevious.style.display = 'none';
 		
 				}
+		
+			// Captions.
+				if (this.captions)
+					this.$modalCaption.style.display = '';
+				else
+					this.$modalCaption.style.display = 'none';
 		
 			// Protect.
 				if (this.protect) {
@@ -2012,8 +2086,10 @@
 		_lightboxGallery.init({
 			id: 'gallery02',
 			navigation: true,
+			captions: false,
 			mobile: true,
 			mobileNavigation: true,
+			scheme: 'dark',
 		});
 
 })();
