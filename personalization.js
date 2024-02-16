@@ -33,6 +33,8 @@ if ((affiliateMatch = /\?affiliate\=(\w*)/.exec(window.location)) !== null) {
     if (domain === 'richard') {
         //alertToday('No affiliate param found: redirecting to affiliate link https://richardfirsthuman--inner-alchemists.thrivecart.com/inner-alchemists/');
         window.location = "https://richardfirsthuman--inner-alchemists.thrivecart.com/inner-alchemists/";
+    } else if (window.location.href.indexOf('.carrd.co') !== -1) {
+        // We're testing an unpublished version. Don't redirect to the published version, obviously.
     } else {
         //alertToday('No affiliate param found: redirecting to affiliate link https://erikjongbloed--inner-alchemists.thrivecart.com/inner-alchemists/');
         window.location = "https://erikjongbloed--inner-alchemists.thrivecart.com/inner-alchemists/";
