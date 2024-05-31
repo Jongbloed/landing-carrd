@@ -95,6 +95,10 @@ a[onclick]:not([href]) {
 	cursor: pointer;
 }
 
+deferred-script {
+	display: none;
+}
+
 #wrapper {
 	-webkit-overflow-scrolling: touch;
 	align-items: center;
@@ -3870,6 +3874,7 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 
 .buttons li {
 	max-width: 100%;
+	text-align: var(--alignment);
 }
 
 .buttons li a {
@@ -3883,7 +3888,8 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 }
 
 .buttons.style1 {
-	justify-content: center;
+	--flex-alignment: center;
+	--alignment: center;
 	gap: 0.5rem;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -4140,6 +4146,8 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 	height: 100%;
 	object-fit: contain;
 	width: 100%;
+	max-width: var(--natural-width, none);
+	max-height: var(--natural-height, none);
 }
 
 .gallery-modal .caption {
