@@ -1,4 +1,6 @@
 var domain = /:\/\/([^\/\.]+)/.exec(window.location.href)[1].toLowerCase();
+var sheet = document.getElementById('personalization');
+var title = document.getElementsByTagName('title')[0];
 
 if ((affiliateMatch = /\?affiliate\=(\w*)/.exec(window.location)) !== null) { 
     // we've already redirected from ThriveCart
@@ -18,8 +20,6 @@ if ((affiliateMatch = /\?affiliate\=(\w*)/.exec(window.location)) !== null) {
             break;
     }
     // Then get here; do personalization based on correct subdomain
-    var sheet = document.getElementById('personalization');
-    var title = document.getElementsByTagName('title')[0];
 
     if (domain === 'richard') {
         title.innerText = 'Inner Alchemists x Being Human Podcast';
@@ -34,6 +34,11 @@ if ((affiliateMatch = /\?affiliate\=(\w*)/.exec(window.location)) !== null) {
         //alertToday('No affiliate param found: redirecting to affiliate link https://richardfirsthuman--inner-alchemists.thrivecart.com/inner-alchemists/');
         window.location = "https://richardfirsthuman--inner-alchemists.thrivecart.com/inner-alchemists/";
     }
-    // Don't redirect if no subdomain. Thrivecart redirect back is currently turned off
+    else {
+        // Don't redirect if no subdomain. Thrivecart redirect back is currently turned off
+        // Apply default personalization
+        title.innerText = 'Inner Alchemists';
+        sheet.href = 'https://gilded-cranachan-b53342.netlify.app/www.css';
+    }
 }
 
